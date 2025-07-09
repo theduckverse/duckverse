@@ -40,7 +40,7 @@ connectBtn.onclick = async () => {
 function startGame() {
   gameContainer.innerHTML = "";
 
-  socket = io("https://your-backend-service.onrender.com"); // UPDATE THIS
+  socket = io(https://duckverse-5.onrender.com); // UPDATE THIS
 
   const config = {
     type: Phaser.AUTO,
