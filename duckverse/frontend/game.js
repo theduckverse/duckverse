@@ -14,7 +14,7 @@ connectBtn.onclick = async () => {
   const signer = provider.getSigner();
   playerAddress = await signer.getAddress();
 
-  const contractAddress = "0xYourContractAddressHere";
+  const contractAddress = "https://duckverse111.onrender.com";
   const abi = [
     "function tokenURI(uint256 tokenId) public view returns (string memory)",
     "function balanceOf(address owner) public view returns (uint256)",
