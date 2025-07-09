@@ -1,1 +1,0 @@
-Put duck.png and arena.png here
