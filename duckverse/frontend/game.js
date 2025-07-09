@@ -14,12 +14,12 @@ connectBtn.onclick = async () => {
   const signer = provider.getSigner();
   playerAddress = await signer.getAddress();
 
-  const contractAddress = "https://duckverse111.onrender.com";
-  const abi = [
-    "function tokenURI(uint256 tokenId) public view returns (string memory)",
-    "function balanceOf(address owner) public view returns (uint256)",
-    "function tokenOfOwnerByIndex(address owner, uint256 index) public view returns (uint256)"
-  ];
+  const contractAddress = "0x1fA1eC04229bA1fBDcAD1b13B96B68f4791537B2";
+const abi = [
+  "function tokenURI(uint256 tokenId) public view returns (string memory)",
+  "function balanceOf(address owner) public view returns (uint256)",
+  "function tokenOfOwnerByIndex(address owner, uint256 index) public view returns (uint256)"
+];
 
   const contract = new ethers.Contract(contractAddress, abi, provider);
   const balance = await contract.balanceOf(playerAddress);
