@@ -15,11 +15,11 @@ connectBtn.onclick = async () => {
   playerAddress = await signer.getAddress();
 
   const contractAddress = "0x1fA1eC04229bA1fBDcAD1b13B96B68f4791537B2";
-const abi = [
-  "function tokenURI(uint256 tokenId) public view returns (string memory)",
-  "function balanceOf(address owner) public view returns (uint256)",
-  "function tokenOfOwnerByIndex(address owner, uint256 index) public view returns (uint256)"
-];
+  const abi = [
+    "function tokenURI(uint256 tokenId) public view returns (string memory)",
+    "function balanceOf(address owner) public view returns (uint256)",
+    "function tokenOfOwnerByIndex(address owner, uint256 index) public view returns (uint256)"
+  ];
 
   const contract = new ethers.Contract(contractAddress, abi, provider);
   const balance = await contract.balanceOf(playerAddress);
@@ -31,8 +31,14 @@ const abi = [
   const tokenId = await contract.tokenOfOwnerByIndex(playerAddress, 0);
   const tokenURI = await contract.tokenURI(tokenId);
   const metadataURL = tokenURI.replace("ipfs://", "https://ipfs.io/ipfs/");
-  const res = await fetch(metadataURL);
-  metadata = await res.json();
+
+  try {
+    const res = await fetch(metadataURL);
+    metadata = await res.json();
+  } catch (err) {
+    console.error("Failed to load metadata", err);
+    metadata = { name: "Duck", image: "assets/duck.png" }; // Fallback
+  }
 
   startGame();
 };
@@ -40,7 +46,7 @@ const abi = [
 function startGame() {
   gameContainer.innerHTML = "";
 
-  socket = io(https://duckverse-5.onrender.com); // UPDATE THIS
+  socket = io("https://duckverse-5.onrender.com"); // ✅ fixed quotes
 
   const config = {
     type: Phaser.AUTO,
